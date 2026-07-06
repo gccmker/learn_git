@@ -18,6 +18,32 @@
         
         <h1>学生周报生成器</h1>
         <H2>git add test</H2>
+        <h3>git commit -m "test commit" test</h3>
+        <!-- 周报生成器简介（可展开/关闭） -->
+        <div class="intro-section">
+            <div class="intro-header" onclick="toggleIntro()">
+                <span class="intro-icon">📋</span>
+                <span class="intro-title">周报生成器简介</span>
+                <span class="intro-toggle" id="introToggle">▼</span>
+            </div>
+            <div class="intro-content" id="introContent">
+                <p>欢迎使用学生周报生成器！本工具旨在帮助教师快速生成学生周报，提升工作效率。</p>
+                <p><strong>主要功能：</strong></p>
+                <ul>
+                    <li>根据学生姓名、考勤天数和作业完成数自动生成周报内容</li>
+                    <li>支持一键复制生成的周报文本</li>
+                    <li>自动保存历史记录，方便查看和管理</li>
+                    <li>支持导出和导入历史记录数据</li>
+                </ul>
+                <p><strong>使用说明：</strong></p>
+                <ul>
+                    <li>填写学生基本信息后点击"生成周报"按钮</li>
+                    <li>生成的周报会自动显示在下方</li>
+                    <li>点击"复制周报"可将内容复制到剪贴板</li>
+                    <li>历史记录会自动保存，可随时查看或清空</li>
+                </ul>
+            </div>
+        </div>
         <!-- 表单区域 -->
         <div class="form-group">
             <label for="studentName">学生姓名</label>
