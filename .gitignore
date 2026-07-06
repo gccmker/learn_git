@@ -1,0 +1,12 @@
+# 系统文件
+Thumbs.db
+.DS_Store
+*.swp
+*.swo
+
+# IDE 配置
+.vscode/
+.idea/
+
+# 日志
+*.log

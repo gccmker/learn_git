@@ -1,0 +1,517 @@
+/* ============================================
+   学生周报生成器 - 样式表
+   复古霓虹风格设计
+   ============================================ */
+
+/* 引入复古像素字体（仅用于装饰性英文） */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+/* ============================================
+   全局重置：清除浏览器默认样式
+   ============================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* 让padding和border包含在元素宽高内 */
+}
+
+/* ============================================
+   页面主体：深色背景 + 居中布局
+   ============================================ */
+body {
+    /* 使用系统默认字体保证中文可读性，英文/数字用等宽字体 */
+    font-family: 'Microsoft YaHei', 'PingFang SC', 'Courier New', monospace;
+    background: #0a0a0a; /* 纯黑背景 */
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+    overflow: hidden; /* 防止背景装饰溢出 */
+}
+
+/* ============================================
+   CRT扫描线效果：模拟老式显示器
+   使用 repeating-linear-gradient 创建水平条纹
+   ============================================ */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        repeating-linear-gradient(
+            0deg,
+            rgba(0, 0, 0, 0.15) 0px,
+            rgba(0, 0, 0, 0.15) 1px,
+            transparent 1px,
+            transparent 2px
+        );
+    pointer-events: none; /* 不阻挡鼠标事件 */
+    z-index: 100;
+}
+
+/* ============================================
+   暗角效果：让页面边缘变暗，聚焦中心
+   使用 radial-gradient 从中心到边缘渐变
+   ============================================ */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.5) 100%);
+    pointer-events: none;
+    z-index: 99;
+}
+
+/* ============================================
+   主容器：霓虹边框 + 滚动支持
+   ============================================ */
+.container {
+    background: #1a1a2e; /* 深蓝背景 */
+    border: 3px solid #ff00ff; /* 品红色边框 */
+    border-radius: 4px;
+    /* 多层阴影实现霓虹发光效果 */
+    box-shadow: 
+        0 0 10px #ff00ff,
+        0 0 20px #ff00ff,
+        0 0 40px #ff00ff,
+        inset 0 0 20px rgba(255, 0, 255, 0.1); /* 内部发光 */
+    padding: 40px;
+    max-width: 650px;
+    width: 100%;
+    max-height: 90vh; /* 限制最大高度为视口90% */
+    overflow-y: auto; /* 内容超出时允许滚动 */
+    position: relative;
+    z-index: 1;
+    /* Firefox 滚动条样式 */
+    scrollbar-width: thin;
+    scrollbar-color: #ff00ff #1a1a2e;
+}
+
+/* Webkit浏览器（Chrome/Edge/Safari）滚动条样式 */
+.container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.container::-webkit-scrollbar-track {
+    background: #1a1a2e;
+}
+
+.container::-webkit-scrollbar-thumb {
+    background: #ff00ff;
+    border-radius: 4px;
+    box-shadow: 0 0 5px #ff00ff;
+}
+
+/* ============================================
+   标题：青色霓虹 + 闪烁动画
+   ============================================ */
+h1 {
+    text-align: center;
+    color: #00ffff; /* 青色文字 */
+    margin-bottom: 40px;
+    font-size: 24px;
+    /* 多层 text-shadow 实现霓虹光晕 */
+    text-shadow: 
+        0 0 5px #00ffff,
+        0 0 10px #00ffff,
+        0 0 20px #00ffff,
+        0 0 40px #0088ff;
+    animation: flicker 3s infinite alternate; /* 闪烁动画 */
+    letter-spacing: 2px;
+}
+
+/* 标题闪烁动画：模拟霓虹灯管不稳定效果 */
+@keyframes flicker {
+    0%, 18%, 22%, 25%, 53%, 57%, 100% {
+        text-shadow: 
+            0 0 5px #00ffff,
+            0 0 10px #00ffff,
+            0 0 20px #00ffff,
+            0 0 40px #0088ff;
+    }
+    20%, 24%, 55% {
+        text-shadow: none; /* 瞬间熄灭 */
+    }
+}
+
+/* ============================================
+   表单组：每个输入项的容器
+   ============================================ */
+.form-group {
+    margin-bottom: 24px;
+}
+
+/* 标签：红色霓虹 */
+label {
+    display: block;
+    margin-bottom: 10px;
+    color: #ff6b6b;
+    font-size: 16px; /* 增大字号提高可读性 */
+    text-shadow: 0 0 5px #ff6b6b;
+    letter-spacing: 1px;
+}
+
+/* 输入框：绿色文字 + 聚焦时青色霓虹 */
+input {
+    width: 100%;
+    padding: 14px 18px;
+    background: #0d0d1a;
+    border: 2px solid #333;
+    border-radius: 2px;
+    font-size: 16px; /* 增大字号 */
+    color: #00ff00; /* 绿色文字，模拟终端效果 */
+    font-family: 'Microsoft YaHei', 'PingFang SC', 'Courier New', monospace;
+    transition: all 0.3s;
+}
+
+/* 输入框聚焦状态 */
+input:focus {
+    outline: none;
+    border-color: #00ffff;
+    box-shadow: 
+        0 0 5px #00ffff,
+        0 0 10px #00ffff,
+        inset 0 0 10px rgba(0, 255, 255, 0.1);
+}
+
+/* 占位符文字 */
+input::placeholder {
+    color: #444;
+}
+
+/* ============================================
+   按钮组：水平排列
+   ============================================ */
+.btn-group {
+    display: flex;
+    gap: 16px;
+    margin-top: 32px;
+}
+
+/* 按钮通用样式 */
+button {
+    flex: 1;
+    padding: 16px 24px;
+    border: 2px solid;
+    border-radius: 2px;
+    font-size: 14px; /* 增大字号 */
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif; /* 使用易读字体 */
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 按钮悬停时的光扫效果 */
+button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+button:hover::before {
+    left: 100%;
+}
+
+button:active {
+    transform: scale(0.98); /* 点击时微缩 */
+}
+
+/* 生成按钮：品红色霓虹 */
+.btn-generate {
+    background: transparent;
+    border-color: #ff00ff;
+    color: #ff00ff;
+    text-shadow: 0 0 5px #ff00ff;
+    box-shadow: 
+        0 0 5px #ff00ff,
+        inset 0 0 5px rgba(255, 0, 255, 0.2);
+}
+
+.btn-generate:hover {
+    background: #ff00ff;
+    color: #000;
+    text-shadow: none;
+    box-shadow: 
+        0 0 10px #ff00ff,
+        0 0 20px #ff00ff,
+        0 0 40px #ff00ff;
+}
+
+/* 复制按钮：绿色霓虹 */
+.btn-copy {
+    background: transparent;
+    border-color: #00ff00;
+    color: #00ff00;
+    text-shadow: 0 0 5px #00ff00;
+    box-shadow: 
+        0 0 5px #00ff00,
+        inset 0 0 5px rgba(0, 255, 0, 0.2);
+}
+
+.btn-copy:hover:not(:disabled) {
+    background: #00ff00;
+    color: #000;
+    text-shadow: none;
+    box-shadow: 
+        0 0 10px #00ff00,
+        0 0 20px #00ff00,
+        0 0 40px #00ff00;
+}
+
+/* 禁用状态 */
+.btn-copy:disabled {
+    border-color: #333;
+    color: #333;
+    text-shadow: none;
+    box-shadow: none;
+    cursor: not-allowed;
+}
+
+/* ============================================
+   结果展示区：黄色霓虹边框
+   ============================================ */
+.result-area {
+    margin-top: 32px;
+    padding: 24px;
+    background: #0d0d1a;
+    border: 2px solid #ffff00;
+    border-radius: 2px;
+    min-height: 100px;
+    white-space: pre-wrap; /* 保留换行和空格 */
+    line-height: 2;
+    color: #ffff00;
+    font-family: 'Microsoft YaHei', 'PingFang SC', 'Courier New', monospace;
+    font-size: 16px; /* 增大字号 */
+    display: none; /* 默认隐藏 */
+    box-shadow: 
+        0 0 5px #ffff00,
+        inset 0 0 10px rgba(255, 255, 0, 0.05);
+    text-shadow: 0 0 3px #ffff00;
+}
+
+/* 显示状态 + 脉冲动画 */
+.result-area.show {
+    display: block;
+    animation: glow-pulse 2s infinite alternate;
+}
+
+/* 结果区发光脉冲动画 */
+@keyframes glow-pulse {
+    from {
+        box-shadow: 
+            0 0 5px #ffff00,
+            inset 0 0 10px rgba(255, 255, 0, 0.05);
+    }
+    to {
+        box-shadow: 
+            0 0 10px #ffff00,
+            0 0 20px #ffff00,
+            inset 0 0 15px rgba(255, 255, 0, 0.1);
+    }
+}
+
+/* ============================================
+   Toast 提示：顶部弹出通知
+   ============================================ */
+.toast {
+    position: fixed;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-100px); /* 初始在屏幕外 */
+    background: #1a1a2e;
+    color: #00ffff;
+    padding: 16px 32px;
+    border: 2px solid #00ffff;
+    border-radius: 2px;
+    transition: transform 0.3s;
+    z-index: 1000;
+    font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif;
+    font-size: 14px;
+    box-shadow: 
+        0 0 10px #00ffff,
+        0 0 20px #00ffff;
+    text-shadow: 0 0 5px #00ffff;
+}
+
+.toast.show {
+    transform: translateX(-50%) translateY(0); /* 滑入屏幕 */
+}
+
+/* ============================================
+   四角装饰：增强复古感
+   ============================================ */
+.corner {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #00ffff;
+}
+
+.corner-tl { top: -2px; left: -2px; border-right: none; border-bottom: none; }
+.corner-tr { top: -2px; right: -2px; border-left: none; border-bottom: none; }
+.corner-bl { bottom: -2px; left: -2px; border-right: none; border-top: none; }
+.corner-br { bottom: -2px; right: -2px; border-left: none; border-top: none; }
+
+/* ============================================
+   历史记录区域
+   ============================================ */
+.history-section {
+    margin-top: 32px;
+    border-top: 2px dashed #333;
+    padding-top: 24px;
+}
+
+.history-title {
+    color: #ff6b6b;
+    font-size: 16px;
+    margin-bottom: 16px;
+    text-shadow: 0 0 5px #ff6b6b;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* 历史操作按钮组 */
+.history-actions {
+    display: flex;
+    gap: 8px;
+}
+
+/* 导出/导入按钮 */
+.history-action-btn {
+    background: transparent;
+    border: 1px solid #00ffff;
+    color: #00ffff;
+    font-size: 12px;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif;
+    transition: all 0.3s;
+}
+
+.history-action-btn:hover {
+    background: #00ffff;
+    color: #000;
+    box-shadow: 0 0 10px #00ffff;
+}
+
+/* 清空按钮 */
+.history-clear {
+    background: transparent;
+    border: 1px solid #ff6b6b;
+    color: #ff6b6b;
+    font-size: 12px;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif;
+    transition: all 0.3s;
+}
+
+.history-clear:hover {
+    background: #ff6b6b;
+    color: #000;
+    box-shadow: 0 0 10px #ff6b6b;
+}
+
+/* 历史列表容器 */
+.history-list {
+    max-height: 300px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #ff00ff #1a1a2e;
+}
+
+.history-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.history-list::-webkit-scrollbar-track {
+    background: #1a1a2e;
+}
+
+.history-list::-webkit-scrollbar-thumb {
+    background: #ff00ff;
+    border-radius: 2px;
+}
+
+/* 单条历史记录 */
+.history-item {
+    background: #0d0d1a;
+    border: 1px solid #333;
+    padding: 12px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+}
+
+.history-item:hover {
+    border-color: #00ffff;
+    box-shadow: 0 0 5px #00ffff;
+}
+
+/* 历史记录头部：姓名 + 日期 */
+.history-item-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 12px;
+    color: #666;
+}
+
+.history-item-name {
+    color: #00ffff;
+    text-shadow: 0 0 3px #00ffff;
+}
+
+/* 历史记录内容 */
+.history-item-content {
+    color: #ffff00;
+    font-family: 'Microsoft YaHei', 'PingFang SC', 'Courier New', monospace;
+    font-size: 14px;
+    line-height: 1.8;
+    white-space: pre-wrap;
+    text-shadow: 0 0 2px #ffff00;
+}
+
+/* 删除按钮：悬停时显示 */
+.history-item-delete {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: transparent;
+    border: none;
+    color: #ff6b6b;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 2px 6px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.history-item:hover .history-item-delete {
+    opacity: 1;
+}
+
+/* 空状态提示 */
+.history-empty {
+    color: #444;
+    font-size: 14px;
+    text-align: center;
+    padding: 20px;
+}

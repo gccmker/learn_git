@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学生周报生成器</title>
+    <!-- 引入外部样式表 -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 主容器 -->
+    <div class="container">
+        <!-- 四角装饰 -->
+        <div class="corner corner-tl"></div>
+        <div class="corner corner-tr"></div>
+        <div class="corner corner-bl"></div>
+        <div class="corner corner-br"></div>
+        
+        <h1>学生周报生成器</h1>
+        
+        <!-- 表单区域 -->
+        <div class="form-group">
+            <label for="studentName">学生姓名</label>
+            <input type="text" id="studentName" placeholder="请输入学生姓名">
+        </div>
+
+        <div class="form-group">
+            <label for="attendanceDays">考勤天数（本周）</label>
+            <input type="number" id="attendanceDays" placeholder="请输入考勤天数" min="0" max="7">
+        </div>
+
+        <div class="form-group">
+            <label for="homeworkCount">作业完成数</label>
+            <input type="number" id="homeworkCount" placeholder="请输入作业完成数" min="0">
+        </div>
+
+        <!-- 按钮组 -->
+        <div class="btn-group">
+            <button class="btn-generate" onclick="generateReport()">生成周报</button>
+            <button class="btn-copy" id="copyBtn" onclick="copyReport()" disabled>复制周报</button>
+        </div>
+
+        <!-- 周报结果展示区 -->
+        <div class="result-area" id="resultArea"></div>
+
+        <!-- 历史记录区域 -->
+        <div class="history-section">
+            <div class="history-title">
+                <span>历史记录</span>
+                <div class="history-actions">
+                    <button class="history-action-btn" onclick="exportHistory()">导出</button>
+                    <button class="history-action-btn" onclick="importHistory()">导入</button>
+                    <button class="history-clear" onclick="clearHistory()">清空</button>
+                </div>
+            </div>
+            <div class="history-list" id="historyList"></div>
+            <!-- 隐藏的文件输入框，用于导入 -->
+            <input type="file" id="importFile" accept=".json" style="display: none;" onchange="handleImport(event)">
+        </div>
+    </div>
+
+    <!-- Toast 提示框 -->
+    <div class="toast" id="toast"></div>
+
+    <!-- 引入外部脚本 -->
+    <script src="script.js"></script>
+</body>
+</html>
