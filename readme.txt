@@ -25,3 +25,6 @@ hahahhahhah
 stash pop apply drop
 
 git branch -D
+
+
+this is main
