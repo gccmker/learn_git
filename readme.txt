@@ -21,3 +21,7 @@ instresdfjasdhf h!
 stash!藏~！？》
 
 hahahhahhah
+
+stash pop apply drop
+
+git branch -D
