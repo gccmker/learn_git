@@ -10,3 +10,7 @@ Thumbs.db
 
 # 日志
 *.log
+
+#不排除
+!.gitignore
+
