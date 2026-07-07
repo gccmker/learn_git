@@ -17,5 +17,7 @@ test chaos
 
 instresdfjasdhf h!
 
+《test stash
+stash!藏~！？》
 
 hahahhahhah
